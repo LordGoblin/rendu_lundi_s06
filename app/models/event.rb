@@ -9,13 +9,13 @@ class Event < ApplicationRecord
 	validates :duration, presence: true
 	validate :modulo_duration
 
-	#validates :title, presence: true, length: { in: 1..140 }
+	validates :title, presence: true, length: { in: 1..140 }
 
-	#validates :description, presence: true, length: { in: 20..1000 }
+	validates :description, presence: true, length: { in: 20..1000 }
 
-	#validates :price, presence: true, numericality: { only_integer: true }, numericality: { greater_than: 1, less_than_or_equal_to: 1000 }
+	validates :price, presence: true, numericality: { only_integer: true }, numericality: { greater_than: 1, less_than_or_equal_to: 1000 }
 
-	#validates :location, presence: true
+	validates :location, presence: true
 
 	def test_start_date
 		if start_date.present? && start_date.to_date < Date.today

@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
 
     @url  = 'http://monsite.fr/login' 
 
-    mail(to: @user.email, subject: 'Bienvenue chez nous !') 
+    mail(to: @user.email, subject: 'Bienvenue chez nous !')
   end
 
   def inscription_event_email(attendance)
