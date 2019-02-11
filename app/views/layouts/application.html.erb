@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GoblinWorld</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+          <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+  </head>
+
+  <body class="bg-warning text-center">
+    <nav class="pt-4 pb-2 d-flex justify-content-between bg-success">
+      <a class="pr-5 text-warning" href="/event">accueil</a>
+
+      <div>
+        <a class="pr-3 text-warning" href="/event/new">new event</a>
+        <a class="pr-5 text-warning" href="">contact</a>
+      </div>
+    </nav>
+    <div>
+      <%= yield %>
+    </div>
+  </body>
+</html>

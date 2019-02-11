@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Salut <%= @attendance.event.user.first_name %> nouvel inscrit pour : <%= @attendance.event.title %> !</h1>
+    <p>
+      email nouvel inscrit : <%= @attendance.user.email %>.
+    </p>
+    <p>
+      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+    </p>
+    <p> À très vite sur monsite.fr !
+  </body>
+</html>

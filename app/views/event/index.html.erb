@@ -1,0 +1,18 @@
+<div class="d-flex flex-column">
+      <div>
+        <h1 class="pt-3 pb-3 text-success">accueil de event</h3>
+      </div>
+
+	<% @event.each do |event| %>
+    	<div class="card mb-4 bg-success text-center">
+        	<div class="card-header border border-dark bg-info">
+        		<a class="text-warning" href=""><%= event.title %><br/></a>
+        	</div>
+        	<div class="card-body">
+        		<a class="text-warning" href="">author:<%= event.user.email %></a>
+                <br/>
+                <br/>
+        	</div>
+    	</div>
+   	<% end %>
+</div>

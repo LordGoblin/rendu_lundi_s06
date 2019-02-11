@@ -1,0 +1,30 @@
+
+<div class="d-flex flex-column text-center">
+	<div>
+		<h1 class="pt-3 pb-3 text-success">Create event</h1>
+	</div>
+	<div>
+		<%= form_tag url_for(action: 'create'), method: "post" do %>
+			<div class="border border-dark bg-success pt-3 pb-3 text-warning">
+
+			    <%= label_tag 'Title' %>   
+			    <%= text_field_tag 'title' %>
+			    <br /> <br />
+
+			    <%= label_tag 'decription' %>
+			    <%= text_area_tag 'decription' %>
+			    <br /> <br />
+
+			    <%= label_tag 'price' %>
+			    <%= text_area_tag 'price' %>
+			    <br /> <br />
+
+			    <%= label_tag 'location' %>
+			    <%= text_area_tag 'location' %>
+			    <br /> <br />
+
+			    <%= submit_tag "Create event" %>
+		    </div>
+		<% end %>
+	</div>
+</div>
