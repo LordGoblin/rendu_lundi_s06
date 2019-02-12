@@ -5,12 +5,11 @@ class EventsController < ApplicationController
   end
 
   def new
-  	
   end
 
   def create
-	@event = Event.new(title: params["title"], description: params["description"], start_date: params["start_date"], duration: params["duration"], price: params["price"], location: params["location"], user_id: "1")
-  	#@gossip.user = current_user
+	@event = Event.new(title: params["title"], description: params["description"], start_date: params["start_date"], duration: params["duration"], price: params["price"], location: params["location"])
+  	@event.user = current_user
     if @event.save
     	redirect_to "/events"
   	else

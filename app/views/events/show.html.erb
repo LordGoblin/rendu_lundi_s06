@@ -1,6 +1,6 @@
 <div class="d-flex flex-column">
 	<div class="text-center">
-		<h1 class="pt-3 pb-3 text-success">voila le gossip numero : <%= @event.id %></h1>
+		<h1 class="pt-3 pb-3 text-success">voila levent numero : <%= @event.id %></h1>
 	</div>
 	<div class="text-center bg-success border border-dark">
 		<div>
@@ -14,5 +14,6 @@
 		<p class="text-warning">duration : <%= @event.duration %></p>
 		<p class="text-warning">price : <%= @event.price %></p>
 		<p class="text-warning">location : <%= @event.location %></p>
+		<p class="text-warning">location : <%= @event.attendances.count %></p>
 	</div>
 </div>
