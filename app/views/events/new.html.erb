@@ -6,13 +6,20 @@
 	<div>
 		<%= form_tag url_for(action: 'create'), method: "post" do %>
 			<div class="border border-dark bg-success pt-3 pb-3 text-warning">
-
 			    <%= label_tag 'Title' %>   
 			    <%= text_field_tag 'title' %>
 			    <br /> <br />
 
-			    <%= label_tag 'decription' %>
-			    <%= text_area_tag 'decription' %>
+			    <%= label_tag 'description' %>
+			    <%= text_area_tag 'description' %>
+			    <br /> <br />
+
+			    <%= label_tag 'start_date' %>
+			    <%= text_area_tag 'start_date' %>
+			    <br /> <br />
+
+			    <%= label_tag 'duration' %>
+			    <%= text_area_tag 'duration' %>
 			    <br /> <br />
 
 			    <%= label_tag 'price' %>
@@ -28,3 +35,4 @@
 		<% end %>
 	</div>
 </div>
+
