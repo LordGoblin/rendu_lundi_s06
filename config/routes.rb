@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'home/secret'
   devise_for :users
   
+  resources :charges
   resources :users
   resources :events do
   	resources :participations
