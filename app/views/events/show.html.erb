@@ -14,6 +14,13 @@
 		<p class="text-warning">duration : <%= @event.duration %></p>
 		<p class="text-warning">price : <%= @event.price %></p>
 		<p class="text-warning">location : <%= @event.location %></p>
-		<p class="text-warning">location : <%= @event.attendances.count %></p>
+		<% if current_user == @event.user %>
+			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/<%= @event.id %>">nombre de participation : <%= @event.attendances.count %></a>
+		<% elsif current_user != @event.user %>
+			<p class="text-warning">nombre de participation : <%= @event.attendances.count %></p>
+			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/new">participe??</a>
+		<% else %>
+			<p class="text-warning">nombre de participation : <%= @event.attendances.count %></p>
+		<% end %>
 	</div>
 </div>
