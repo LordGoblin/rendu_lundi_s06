@@ -1,0 +1,2735 @@
+  [1m[35m (227.7ms)[0m  [1m[35mCREATE DATABASE "goblin_world_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (53.2ms)[0m  [1m[35mCREATE DATABASE "goblin_world_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (249.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "goblin_world_development"[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (259.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "goblin_world_test"[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (675.2ms)[0m  [1m[35mCREATE DATABASE "goblin_world_development" ENCODING = 'unicode'[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (620.7ms)[0m  [1m[35mCREATE DATABASE "goblin_world_test" ENCODING = 'unicode'[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "attendances" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (163.0ms)[0m  [1m[35mCREATE TABLE "attendances" ("id" bigserial primary key, "stripe_customer_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" bigint, "event_id" bigint)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (53.7ms)[0m  [1m[35mCREATE  INDEX  "index_attendances_on_event_id" ON "attendances"  ("event_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (42.2ms)[0m  [1m[35mCREATE  INDEX  "index_attendances_on_user_id" ON "attendances"  ("user_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  ↳ db/schema.rb:28
+  [1m[35m (93.7ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "start_date" timestamp, "duration" integer, "title" character varying, "description" text, "price" integer, "location" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:28
+  [1m[35m (49.3ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events"  ("user_id")[0m
+  ↳ db/schema.rb:28
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:41
+  [1m[35m (359.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "description" text, "first_name" character varying, "last_name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:41
+  [1m[35m (17.8ms)[0m  [1m[35mALTER TABLE "attendances" ADD CONSTRAINT "fk_rails_777eb7170a"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  ↳ db/schema.rb:50
+  [1m[35m (9.5ms)[0m  [1m[35mALTER TABLE "attendances" ADD CONSTRAINT "fk_rails_77ad02f5c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  ↳ db/schema.rb:51
+  [1m[35m (107.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190211113627)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (10.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190211100129),
+(20190211095946),
+(20190211095451);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (96.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (2.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-02-12 14:48:40.900539"], ["updated_at", "2019-02-12 14:48:40.900539"]]
+  ↳ db/schema.rb:13
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35mSQL (1.0ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  ↳ db/schema.rb:16
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "attendances" CASCADE[0m
+  ↳ db/schema.rb:18
+  [1m[35m (109.2ms)[0m  [1m[35mCREATE TABLE "attendances" ("id" bigserial primary key, "stripe_customer_id" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" bigint, "event_id" bigint)[0m
+  ↳ db/schema.rb:18
+  [1m[35m (41.5ms)[0m  [1m[35mCREATE  INDEX  "index_attendances_on_event_id" ON "attendances"  ("event_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (49.0ms)[0m  [1m[35mCREATE  INDEX  "index_attendances_on_user_id" ON "attendances"  ("user_id")[0m
+  ↳ db/schema.rb:18
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "events" CASCADE[0m
+  ↳ db/schema.rb:28
+  [1m[35m (84.4ms)[0m  [1m[35mCREATE TABLE "events" ("id" bigserial primary key, "start_date" timestamp, "duration" integer, "title" character varying, "description" text, "price" integer, "location" character varying, "user_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:28
+  [1m[35m (51.0ms)[0m  [1m[35mCREATE  INDEX  "index_events_on_user_id" ON "events"  ("user_id")[0m
+  ↳ db/schema.rb:28
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  ↳ db/schema.rb:41
+  [1m[35m (128.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "description" text, "first_name" character varying, "last_name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:41
+  [1m[35m (54.2ms)[0m  [1m[35mALTER TABLE "attendances" ADD CONSTRAINT "fk_rails_777eb7170a"
+FOREIGN KEY ("event_id")
+  REFERENCES "events" ("id")
+[0m
+  ↳ db/schema.rb:50
+  [1m[35m (31.1ms)[0m  [1m[35mALTER TABLE "attendances" ADD CONSTRAINT "fk_rails_77ad02f5c5"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  ↳ db/schema.rb:51
+  [1m[35m (94.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (11.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20190211113627)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (10.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20190211100129),
+(20190211095946),
+(20190211095451);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (115.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (1.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2019-02-12 14:48:41.878733"], ["updated_at", "2019-02-12 14:48:41.878733"]]
+  ↳ db/schema.rb:13
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Update (1.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2019-02-12 14:48:41.894955"], ["key", "environment"]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (10.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (2.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "dariusorn@grimes.co"], ["description", "Drill Peck"], ["first_name", "Staryu"], ["last_name", "lime"], ["created_at", "2019-02-12 14:48:45.821534"], ["updated_at", "2019-02-12 14:48:45.821534"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (6.4ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (1.1ms)
+UserMailer#welcome_email: processed outbound mail in 2322.0ms
+Sent mail to dariusorn@grimes.co (1237.3ms)
+Date: Tue, 12 Feb 2019 15:48:48 +0100
+From: no-reply@monsite.fr
+To: dariusorn@grimes.co
+Message-ID: <5c62dcd0319b6_404e2b088af245b460975@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd029841_404e2b088af245b4608ba";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd029841_404e2b088af245b4608ba
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU3Rhcnl1IGV0IGJpZW52ZW51ZSBjaGV6IG5vdXMgIQ0KPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PQ0KIA0KVHUgdCdlcyBpbnNjcml0IHN1ciBtb25zaXRlLmZyIGVu
+IHV0aWxpc2FudCBsJ2UtbWFpbCBzdWl2YW50IDogZGFyaXVzb3JuQGdyaW1l
+cy5jby4NCiANClBvdXIgYWNjw6lkZXIgw6AgdG9uIGVzcGFjZSBjbGllbnQs
+IGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8vbW9uc2l0ZS5mci9sb2dpbi4N
+CiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd029841_404e2b088af245b4608ba
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Staryu et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : dari=
+usorn@grimes.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd029841_404e2b088af245b4608ba--
+
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "myrtie@schiller.biz"], ["description", "Mimic"], ["first_name", "Weezing"], ["last_name", "sky blue"], ["created_at", "2019-02-12 14:48:49.436592"], ["updated_at", "2019-02-12 14:48:49.436592"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.2ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 20.9ms
+Sent mail to myrtie@schiller.biz (227.4ms)
+Date: Tue, 12 Feb 2019 15:48:49 +0100
+From: no-reply@monsite.fr
+To: myrtie@schiller.biz
+Message-ID: <5c62dcd171564_404e2b088af245b4611c1@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd16fb22_404e2b088af245b4610b8";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd16fb22_404e2b088af245b4610b8
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgV2VlemluZyBldCBiaWVudmVudWUgY2hleiBub3VzICENCj09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT0NCiANClR1IHQnZXMgaW5zY3JpdCBzdXIgbW9uc2l0ZS5mciBl
+biB1dGlsaXNhbnQgbCdlLW1haWwgc3VpdmFudCA6IG15cnRpZUBzY2hpbGxl
+ci5iaXouDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBlc3BhY2UgY2xpZW50
+LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNpdGUuZnIvbG9naW4u
+DQogDQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd16fb22_404e2b088af245b4610b8
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Weezing et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : myrt=
+ie@schiller.biz.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd16fb22_404e2b088af245b4610b8--
+
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "ewa@mraz.io"], ["description", "Thrash"], ["first_name", "Psyduck"], ["last_name", "red"], ["created_at", "2019-02-12 14:48:49.708489"], ["updated_at", "2019-02-12 14:48:49.708489"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 25.8ms
+Sent mail to ewa@mraz.io (248.4ms)
+Date: Tue, 12 Feb 2019 15:48:49 +0100
+From: no-reply@monsite.fr
+To: ewa@mraz.io
+Message-ID: <5c62dcd1b5a7c_404e2b088af245b4613a1@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd1b329d_404e2b088af245b461278";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd1b329d_404e2b088af245b461278
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgUHN5ZHVjayBldCBiaWVudmVudWUgY2hleiBub3VzICENCj09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT0NCiANClR1IHQnZXMgaW5zY3JpdCBzdXIgbW9uc2l0ZS5mciBl
+biB1dGlsaXNhbnQgbCdlLW1haWwgc3VpdmFudCA6IGV3YUBtcmF6LmlvLg0K
+IA0KUG91ciBhY2PDqWRlciDDoCB0b24gZXNwYWNlIGNsaWVudCwgY29ubmVj
+dGUtdG9pIHZpYSA6IGh0dHA6Ly9tb25zaXRlLmZyL2xvZ2luLg0KIA0Kw4Ag
+dHLDqHMgdml0ZSBzdXIgbW9uc2l0ZS5mciAhDQo=
+
+----==_mimepart_5c62dcd1b329d_404e2b088af245b461278
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Psyduck et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : ewa@=
+mraz.io.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd1b329d_404e2b088af245b461278--
+
+  [1m[35m (9.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "birgit@homenickblanda.com"], ["description", "Comet Punch"], ["first_name", "Seel"], ["last_name", "lime"], ["created_at", "2019-02-12 14:48:50.009470"], ["updated_at", "2019-02-12 14:48:50.009470"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 27.9ms
+Sent mail to birgit@homenickblanda.com (232.3ms)
+Date: Tue, 12 Feb 2019 15:48:50 +0100
+From: no-reply@monsite.fr
+To: birgit@homenickblanda.com
+Message-ID: <5c62dcd2b34f_404e2b088af245b4615db@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd2890c_404e2b088af245b46144d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd2890c_404e2b088af245b46144d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU2VlbCBldCBiaWVudmVudWUgY2hleiBub3VzICENCj09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT0NCiANClR1IHQnZXMgaW5zY3JpdCBzdXIgbW9uc2l0ZS5mciBlbiB1
+dGlsaXNhbnQgbCdlLW1haWwgc3VpdmFudCA6IGJpcmdpdEBob21lbmlja2Js
+YW5kYS5jb20uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBlc3BhY2UgY2xp
+ZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNpdGUuZnIvbG9n
+aW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd2890c_404e2b088af245b46144d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Seel et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : birg=
+it@homenickblanda.com.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd2890c_404e2b088af245b46144d--
+
+  [1m[35m (11.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "nestorwaelchi@harber.net"], ["description", "Strength"], ["first_name", "Venonat"], ["last_name", "salmon"], ["created_at", "2019-02-12 14:48:50.299724"], ["updated_at", "2019-02-12 14:48:50.299724"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 22.5ms
+Sent mail to nestorwaelchi@harber.net (501.8ms)
+Date: Tue, 12 Feb 2019 15:48:50 +0100
+From: no-reply@monsite.fr
+To: nestorwaelchi@harber.net
+Message-ID: <5c62dcd2505b3_404e2b088af245b4617c9@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd24e6eb_404e2b088af245b4616cd";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd24e6eb_404e2b088af245b4616cd
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgVmVub25hdCBldCBiaWVudmVudWUgY2hleiBub3VzICENCj09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT0NCiANClR1IHQnZXMgaW5zY3JpdCBzdXIgbW9uc2l0ZS5mciBl
+biB1dGlsaXNhbnQgbCdlLW1haWwgc3VpdmFudCA6IG5lc3RvcndhZWxjaGlA
+aGFyYmVyLm5ldC4NCiANClBvdXIgYWNjw6lkZXIgw6AgdG9uIGVzcGFjZSBj
+bGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8vbW9uc2l0ZS5mci9s
+b2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd24e6eb_404e2b088af245b4616cd
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Venonat et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : nest=
+orwaelchi@harber.net.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd24e6eb_404e2b088af245b4616cd--
+
+  [1m[35m (47.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "maureen@conroy.co"], ["description", "Aurora Beam"], ["first_name", "Dodrio"], ["last_name", "lime"], ["created_at", "2019-02-12 14:48:50.885538"], ["updated_at", "2019-02-12 14:48:50.885538"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.3ms)
+UserMailer#welcome_email: processed outbound mail in 23.4ms
+Sent mail to maureen@conroy.co (228.3ms)
+Date: Tue, 12 Feb 2019 15:48:50 +0100
+From: no-reply@monsite.fr
+To: maureen@conroy.co
+Message-ID: <5c62dcd2e005e_404e2b088af245b4619d7@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd2de1c0_404e2b088af245b4618cc";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd2de1c0_404e2b088af245b4618cc
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIGV0IGJpZW52ZW51ZSBjaGV6IG5vdXMgIQ0KPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PQ0KIA0KVHUgdCdlcyBpbnNjcml0IHN1ciBtb25zaXRlLmZyIGVu
+IHV0aWxpc2FudCBsJ2UtbWFpbCBzdWl2YW50IDogbWF1cmVlbkBjb25yb3ku
+Y28uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBlc3BhY2UgY2xpZW50LCBj
+b25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNpdGUuZnIvbG9naW4uDQog
+DQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd2de1c0_404e2b088af245b4618cc
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : maur=
+een@conroy.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd2de1c0_404e2b088af245b4618cc--
+
+  [1m[35m (10.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "sook@simonis.io"], ["description", "Minimize"], ["first_name", "Clefairy"], ["last_name", "salmon"], ["created_at", "2019-02-12 14:48:51.164368"], ["updated_at", "2019-02-12 14:48:51.164368"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 23.6ms
+Sent mail to sook@simonis.io (238.0ms)
+Date: Tue, 12 Feb 2019 15:48:51 +0100
+From: no-reply@monsite.fr
+To: sook@simonis.io
+Message-ID: <5c62dcd32fa3f_404e2b088af245b4621dc@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd32d8f7_404e2b088af245b46202e";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd32d8f7_404e2b088af245b46202e
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgQ2xlZmFpcnkgZXQgYmllbnZlbnVlIGNoZXogbm91cyAhDQo9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09DQogDQpUdSB0J2VzIGluc2NyaXQgc3VyIG1vbnNpdGUuZnIg
+ZW4gdXRpbGlzYW50IGwnZS1tYWlsIHN1aXZhbnQgOiBzb29rQHNpbW9uaXMu
+aW8uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBlc3BhY2UgY2xpZW50LCBj
+b25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNpdGUuZnIvbG9naW4uDQog
+DQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd32d8f7_404e2b088af245b46202e
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Clefairy et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : sook=
+@simonis.io.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd32d8f7_404e2b088af245b46202e--
+
+  [1m[35m (12.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "cliffordsmith@reicheleffertz.org"], ["description", "Mega Drain"], ["first_name", "Electabuzz"], ["last_name", "maroon"], ["created_at", "2019-02-12 14:48:51.454238"], ["updated_at", "2019-02-12 14:48:51.454238"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 25.2ms
+Sent mail to cliffordsmith@reicheleffertz.org (255.0ms)
+Date: Tue, 12 Feb 2019 15:48:51 +0100
+From: no-reply@monsite.fr
+To: cliffordsmith@reicheleffertz.org
+Message-ID: <5c62dcd376f42_404e2b088af245b46237a@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd37434f_404e2b088af245b4622f6";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd37434f_404e2b088af245b4622f6
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRWxlY3RhYnV6eiBldCBiaWVudmVudWUgY2hleiBub3VzICENCj09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT0NCiANClR1IHQnZXMgaW5zY3JpdCBzdXIgbW9uc2l0ZS5m
+ciBlbiB1dGlsaXNhbnQgbCdlLW1haWwgc3VpdmFudCA6IGNsaWZmb3Jkc21p
+dGhAcmVpY2hlbGVmZmVydHoub3JnLg0KIA0KUG91ciBhY2PDqWRlciDDoCB0
+b24gZXNwYWNlIGNsaWVudCwgY29ubmVjdGUtdG9pIHZpYSA6IGh0dHA6Ly9t
+b25zaXRlLmZyL2xvZ2luLg0KIA0Kw4AgdHLDqHMgdml0ZSBzdXIgbW9uc2l0
+ZS5mciAhDQo=
+
+----==_mimepart_5c62dcd37434f_404e2b088af245b4622f6
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Electabuzz et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : clif=
+fordsmith@reicheleffertz.org.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd37434f_404e2b088af245b4622f6--
+
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "albauch@wildermandamore.info"], ["description", "Aurora Beam"], ["first_name", "Electrode"], ["last_name", "turquoise"], ["created_at", "2019-02-12 14:48:51.755699"], ["updated_at", "2019-02-12 14:48:51.755699"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 29.0ms
+Sent mail to albauch@wildermandamore.info (232.7ms)
+Date: Tue, 12 Feb 2019 15:48:51 +0100
+From: no-reply@monsite.fr
+To: albauch@wildermandamore.info
+Message-ID: <5c62dcd3c176d_404e2b088af245b462592@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd3beb4b_404e2b088af245b46241f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd3beb4b_404e2b088af245b46241f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRWxlY3Ryb2RlIGV0IGJpZW52ZW51ZSBjaGV6IG5vdXMgIQ0KPT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PQ0KIA0KVHUgdCdlcyBpbnNjcml0IHN1ciBtb25zaXRlLmZy
+IGVuIHV0aWxpc2FudCBsJ2UtbWFpbCBzdWl2YW50IDogYWxiYXVjaEB3aWxk
+ZXJtYW5kYW1vcmUuaW5mby4NCiANClBvdXIgYWNjw6lkZXIgw6AgdG9uIGVz
+cGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8vbW9uc2l0
+ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNpdGUuZnIg
+IQ0K
+
+----==_mimepart_5c62dcd3beb4b_404e2b088af245b46241f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Electrode et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : alba=
+uch@wildermandamore.info.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd3beb4b_404e2b088af245b46241f--
+
+  [1m[35m (9.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:12
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "description", "first_name", "last_name", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "alphonso@hyatt.name"], ["description", "Mimic"], ["first_name", "Dodrio"], ["last_name", "ivory"], ["created_at", "2019-02-12 14:48:52.042808"], ["updated_at", "2019-02-12 14:48:52.042808"]]
+  ↳ db/seeds.rb:12
+  Rendering user_mailer/welcome_email.html.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.html.erb within layouts/mailer (0.1ms)
+  Rendering user_mailer/welcome_email.text.erb within layouts/mailer
+  Rendered user_mailer/welcome_email.text.erb within layouts/mailer (0.1ms)
+UserMailer#welcome_email: processed outbound mail in 27.7ms
+Sent mail to alphonso@hyatt.name (249.5ms)
+Date: Tue, 12 Feb 2019 15:48:52 +0100
+From: no-reply@monsite.fr
+To: alphonso@hyatt.name
+Message-ID: <5c62dcd4136b8_404e2b088af245b46276e@Trone.mail>
+Subject: Bienvenue chez nous !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd410fb0_404e2b088af245b462620";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd410fb0_404e2b088af245b462620
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIGV0IGJpZW52ZW51ZSBjaGV6IG5vdXMgIQ0KPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PQ0KIA0KVHUgdCdlcyBpbnNjcml0IHN1ciBtb25zaXRlLmZyIGVu
+IHV0aWxpc2FudCBsJ2UtbWFpbCBzdWl2YW50IDogYWxwaG9uc29AaHlhdHQu
+bmFtZS4NCiANClBvdXIgYWNjw6lkZXIgw6AgdG9uIGVzcGFjZSBjbGllbnQs
+IGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8vbW9uc2l0ZS5mci9sb2dpbi4N
+CiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd410fb0_404e2b088af245b462620
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio et bienvenue chez nous !</h1>=0D
+    <p>=0D
+      Tu t'es inscrit sur monsite.fr en utilisant l'e-mail suivant : alph=
+onso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd410fb0_404e2b088af245b462620--
+
+  [1m[35m (5.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:12
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.9ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-03-02 00:00:00"], ["duration", 60], ["title", "Pine Acres"], ["description", "All arrays Chuck Norris declares are of infinite size, because Chuck Norris knows no bounds."], ["price", 6], ["location", "Cormierstad"], ["user_id", 10], ["created_at", "2019-02-12 14:48:52.534019"], ["updated_at", "2019-02-12 14:48:52.534019"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (15.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (0.9ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-17 00:00:00"], ["duration", 60], ["title", "Summer Place"], ["description", "Chuck Norris does not use exceptions when programming. He has not been able to identify any of his code that is not exceptional."], ["price", 171], ["location", "Port Tariview"], ["user_id", 10], ["created_at", "2019-02-12 14:48:52.564412"], ["updated_at", "2019-02-12 14:48:52.564412"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (8.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-14 00:00:00"], ["duration", 60], ["title", "Paradise Crossing"], ["description", "Chuck Norris doesn't program with a keyboard. He stares the computer down until it does what he wants."], ["price", 224], ["location", "North Annetteshire"], ["user_id", 4], ["created_at", "2019-02-12 14:48:52.588559"], ["updated_at", "2019-02-12 14:48:52.588559"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (6.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.5ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-03-07 00:00:00"], ["duration", 60], ["title", "Willow Village"], ["description", "Chuck Norris doesn't have disk latency because the hard drive knows to hurry the hell up."], ["price", 172], ["location", "North Carlosport"], ["user_id", 6], ["created_at", "2019-02-12 14:48:52.611111"], ["updated_at", "2019-02-12 14:48:52.611111"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (6.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-25 00:00:00"], ["duration", 60], ["title", "Paradise Court"], ["description", "Chuck Norris does not use revision control software. None of his code has ever needed revision."], ["price", 10], ["location", "Mannmouth"], ["user_id", 8], ["created_at", "2019-02-12 14:48:52.631873"], ["updated_at", "2019-02-12 14:48:52.631873"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-19 00:00:00"], ["duration", 60], ["title", "Paradise Crossing"], ["description", "Chuck Norris doesn't need garbage collection because he doesn't call .Dispose(), he calls .DropKick()."], ["price", 367], ["location", "Gislasonborough"], ["user_id", 6], ["created_at", "2019-02-12 14:48:52.653592"], ["updated_at", "2019-02-12 14:48:52.653592"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.0ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-14 00:00:00"], ["duration", 60], ["title", "Park Heights"], ["description", "Chuck Norris doesn't need garbage collection because he doesn't call .Dispose(), he calls .DropKick()."], ["price", 620], ["location", "New Alton"], ["user_id", 3], ["created_at", "2019-02-12 14:48:52.675911"], ["updated_at", "2019-02-12 14:48:52.675911"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.1ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-18 00:00:00"], ["duration", 60], ["title", "Autumn Crossing"], ["description", "Chuck Norris doesn't use web standards as the web will conform to him."], ["price", 527], ["location", "New Richelleberg"], ["user_id", 2], ["created_at", "2019-02-12 14:48:52.699100"], ["updated_at", "2019-02-12 14:48:52.699100"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.2ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-03-03 00:00:00"], ["duration", 60], ["title", "Paradise Estates"], ["description", "All browsers support the hex definitions #chuck and #norris for the colors black and blue."], ["price", 452], ["location", "Abbottside"], ["user_id", 5], ["created_at", "2019-02-12 14:48:52.719852"], ["updated_at", "2019-02-12 14:48:52.719852"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:16
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:18
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:18
+  [1m[36mEvent Create (1.3ms)[0m  [1m[32mINSERT INTO "events" ("start_date", "duration", "title", "description", "price", "location", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["start_date", "2019-02-21 00:00:00"], ["duration", 60], ["title", "Royal Heights"], ["description", "Chuck Norris can access the DB from the UI."], ["price", 240], ["location", "Port Jonah"], ["user_id", 4], ["created_at", "2019-02-12 14:48:52.743306"], ["updated_at", "2019-02-12 14:48:52.743306"]]
+  ↳ db/seeds.rb:18
+  [1m[35m (6.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:18
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (3.1ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:52.819129"], ["updated_at", "2019-02-12 14:48:52.819129"], ["user_id", 4], ["event_id", 4]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (1.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (1.0ms)
+UserMailer#inscription_event_email: processed outbound mail in 30.6ms
+Sent mail to maureen@conroy.co (270.6ms)
+Date: Tue, 12 Feb 2019 15:48:52 +0100
+From: no-reply@monsite.fr
+To: maureen@conroy.co
+Message-ID: <5c62dcd4d19f7_404e2b088af245b462977@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd4cfcef_404e2b088af245b46285a";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd4cfcef_404e2b088af245b46285a
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBXaWxsb3cgVmls
+bGFnZSAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5zY3Jp
+dCA6IGJpcmdpdEBob21lbmlja2JsYW5kYS5jb20uDQogDQpQb3VyIGFjY8Op
+ZGVyIMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDog
+aHR0cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1
+ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd4cfcef_404e2b088af245b46285a
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Willow Village !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : birgit@homenickblanda.com.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd4cfcef_404e2b088af245b46285a--
+
+  [1m[35m (16.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (2.5ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:53.159199"], ["updated_at", "2019-02-12 14:48:53.159199"], ["user_id", 7], ["event_id", 6]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 28.0ms
+Sent mail to maureen@conroy.co (228.8ms)
+Date: Tue, 12 Feb 2019 15:48:53 +0100
+From: no-reply@monsite.fr
+To: maureen@conroy.co
+Message-ID: <5c62dcd52fb01_404e2b088af245b46316b@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd52dd5f_404e2b088af245b463075";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd52dd5f_404e2b088af245b463075
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQYXJhZGlzZSBD
+cm9zc2luZyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IHNvb2tAc2ltb25pcy5pby4NCiANClBvdXIgYWNjw6lkZXIgw6Ag
+dG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8v
+bW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNp
+dGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd52dd5f_404e2b088af245b463075
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : sook@simonis.io.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd52dd5f_404e2b088af245b463075--
+
+  [1m[35m (10.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (0.9ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.4ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:53.454341"], ["updated_at", "2019-02-12 14:48:53.454341"], ["user_id", 8], ["event_id", 3]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 28.9ms
+Sent mail to birgit@homenickblanda.com (229.5ms)
+Date: Tue, 12 Feb 2019 15:48:53 +0100
+From: no-reply@monsite.fr
+To: birgit@homenickblanda.com
+Message-ID: <5c62dcd577f1b_404e2b088af245b4633bd@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd57629e_404e2b088af245b463219";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd57629e_404e2b088af245b463219
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU2VlbCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2UgQ3Jv
+c3NpbmcgIQ0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PQ0KIA0KZW1haWwgbm91dmVsIGluc2Ny
+aXQgOiBjbGlmZm9yZHNtaXRoQHJlaWNoZWxlZmZlcnR6Lm9yZy4NCiANClBv
+dXIgYWNjw6lkZXIgw6AgdG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRv
+aSB2aWEgOiBodHRwOi8vbW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hz
+IHZpdGUgc3VyIG1vbnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd57629e_404e2b088af245b463219
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Seel nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : cliffordsmith@reicheleffertz.org.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd57629e_404e2b088af245b463219--
+
+  [1m[35m (13.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (2.3ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:53.753982"], ["updated_at", "2019-02-12 14:48:53.753982"], ["user_id", 10], ["event_id", 9]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 28.2ms
+Sent mail to nestorwaelchi@harber.net (227.3ms)
+Date: Tue, 12 Feb 2019 15:48:53 +0100
+From: no-reply@monsite.fr
+To: nestorwaelchi@harber.net
+Message-ID: <5c62dcd5c0df7_404e2b088af245b463550@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd5bf182_404e2b088af245b46347";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd5bf182_404e2b088af245b46347
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgVmVub25hdCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2Ug
+RXN0YXRlcyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IGFscGhvbnNvQGh5YXR0Lm5hbWUuDQogDQpQb3VyIGFjY8OpZGVy
+IMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0
+cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBt
+b25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd5bf182_404e2b088af245b46347
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Venonat nouvel inscrit pour : Paradise Estates !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : alphonso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd5bf182_404e2b088af245b46347--
+
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.6ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:54.042648"], ["updated_at", "2019-02-12 14:48:54.042648"], ["user_id", 1], ["event_id", 7]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 25.7ms
+Sent mail to ewa@mraz.io (226.2ms)
+Date: Tue, 12 Feb 2019 15:48:54 +0100
+From: no-reply@monsite.fr
+To: ewa@mraz.io
+Message-ID: <5c62dcd6132fb_404e2b088af245b4637cf@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd6117a9_404e2b088af245b46364b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd6117a9_404e2b088af245b46364b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgUHN5ZHVjayBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyayBIZWln
+aHRzICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNjcml0
+IDogZGFyaXVzb3JuQGdyaW1lcy5jby4NCiANClBvdXIgYWNjw6lkZXIgw6Ag
+dG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8v
+bW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNp
+dGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd6117a9_404e2b088af245b46364b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Psyduck nouvel inscrit pour : Park Heights !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : dariusorn@grimes.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd6117a9_404e2b088af245b46364b--
+
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (2.0ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:54.328140"], ["updated_at", "2019-02-12 14:48:54.328140"], ["user_id", 10], ["event_id", 6]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 26.7ms
+Sent mail to maureen@conroy.co (291.5ms)
+Date: Tue, 12 Feb 2019 15:48:54 +0100
+From: no-reply@monsite.fr
+To: maureen@conroy.co
+Message-ID: <5c62dcd658786_404e2b088af245b4639a4@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd656b06_404e2b088af245b463841";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd656b06_404e2b088af245b463841
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQYXJhZGlzZSBD
+cm9zc2luZyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IGFscGhvbnNvQGh5YXR0Lm5hbWUuDQogDQpQb3VyIGFjY8OpZGVy
+IMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0
+cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBt
+b25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd656b06_404e2b088af245b463841
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : alphonso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd656b06_404e2b088af245b463841--
+
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.6ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:54.683111"], ["updated_at", "2019-02-12 14:48:54.683111"], ["user_id", 4], ["event_id", 8]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 25.7ms
+Sent mail to myrtie@schiller.biz (219.3ms)
+Date: Tue, 12 Feb 2019 15:48:54 +0100
+From: no-reply@monsite.fr
+To: myrtie@schiller.biz
+Message-ID: <5c62dcd6aed15_404e2b088af245b4641b4@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd6ad1ea_404e2b088af245b464018";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd6ad1ea_404e2b088af245b464018
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgV2VlemluZyBub3V2ZWwgaW5zY3JpdCBwb3VyIDogQXV0dW1uIENy
+b3NzaW5nICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNj
+cml0IDogYmlyZ2l0QGhvbWVuaWNrYmxhbmRhLmNvbS4NCiANClBvdXIgYWNj
+w6lkZXIgw6AgdG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEg
+OiBodHRwOi8vbW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUg
+c3VyIG1vbnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd6ad1ea_404e2b088af245b464018
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Weezing nouvel inscrit pour : Autumn Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : birgit@homenickblanda.com.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd6ad1ea_404e2b088af245b464018--
+
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.2ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:54.957721"], ["updated_at", "2019-02-12 14:48:54.957721"], ["user_id", 6], ["event_id", 5]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 32.3ms
+Sent mail to cliffordsmith@reicheleffertz.org (497.4ms)
+Date: Tue, 12 Feb 2019 15:48:54 +0100
+From: no-reply@monsite.fr
+To: cliffordsmith@reicheleffertz.org
+Message-ID: <5c62dcd6f3943_404e2b088af245b4643d7@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd6f08f0_404e2b088af245b46427b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd6f08f0_404e2b088af245b46427b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRWxlY3RhYnV6eiBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRp
+c2UgQ291cnQgIQ0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KIA0KZW1haWwgbm91dmVsIGlu
+c2NyaXQgOiBtYXVyZWVuQGNvbnJveS5jby4NCiANClBvdXIgYWNjw6lkZXIg
+w6AgdG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRw
+Oi8vbW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1v
+bnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd6f08f0_404e2b088af245b46427b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Electabuzz nouvel inscrit pour : Paradise Court !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : maureen@conroy.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd6f08f0_404e2b088af245b46427b--
+
+  [1m[35m (62.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.0ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:55.570726"], ["updated_at", "2019-02-12 14:48:55.570726"], ["user_id", 3], ["event_id", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.9ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 32.0ms
+Sent mail to alphonso@hyatt.name (522.8ms)
+Date: Tue, 12 Feb 2019 15:48:55 +0100
+From: no-reply@monsite.fr
+To: alphonso@hyatt.name
+Message-ID: <5c62dcd795824_404e2b088af245b46455@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd793140_404e2b088af245b4644e6";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd793140_404e2b088af245b4644e6
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQaW5lIEFjcmVz
+ICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNjcml0IDog
+ZXdhQG1yYXouaW8uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBlc3BhY2Ug
+Y2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNpdGUuZnIv
+bG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd793140_404e2b088af245b4644e6
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Pine Acres !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : ewa@mraz.io.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd793140_404e2b088af245b4644e6--
+
+  [1m[35m (23.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.7ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:56.175231"], ["updated_at", "2019-02-12 14:48:56.175231"], ["user_id", 10], ["event_id", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.4ms
+Sent mail to alphonso@hyatt.name (229.1ms)
+Date: Tue, 12 Feb 2019 15:48:56 +0100
+From: no-reply@monsite.fr
+To: alphonso@hyatt.name
+Message-ID: <5c62dcd8332c9_404e2b088af245b4647af@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd8316e2_404e2b088af245b46469b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd8316e2_404e2b088af245b46469b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQaW5lIEFjcmVz
+ICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNjcml0IDog
+YWxwaG9uc29AaHlhdHQubmFtZS4NCiANClBvdXIgYWNjw6lkZXIgw6AgdG9u
+IGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRwOi8vbW9u
+c2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1vbnNpdGUu
+ZnIgIQ0K
+
+----==_mimepart_5c62dcd8316e2_404e2b088af245b46469b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Pine Acres !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : alphonso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd8316e2_404e2b088af245b46469b--
+
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.9ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:56.464021"], ["updated_at", "2019-02-12 14:48:56.464021"], ["user_id", 8], ["event_id", 6]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.7ms
+Sent mail to maureen@conroy.co (234.2ms)
+Date: Tue, 12 Feb 2019 15:48:56 +0100
+From: no-reply@monsite.fr
+To: maureen@conroy.co
+Message-ID: <5c62dcd879d7d_404e2b088af245b4649d9@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd877fe2_404e2b088af245b464873";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd877fe2_404e2b088af245b464873
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQYXJhZGlzZSBD
+cm9zc2luZyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IGNsaWZmb3Jkc21pdGhAcmVpY2hlbGVmZmVydHoub3JnLg0KIA0K
+UG91ciBhY2PDqWRlciDDoCB0b24gZXNwYWNlIGNsaWVudCwgY29ubmVjdGUt
+dG9pIHZpYSA6IGh0dHA6Ly9tb25zaXRlLmZyL2xvZ2luLg0KIA0Kw4AgdHLD
+qHMgdml0ZSBzdXIgbW9uc2l0ZS5mciAhDQo=
+
+----==_mimepart_5c62dcd877fe2_404e2b088af245b464873
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : cliffordsmith@reicheleffertz.org.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd877fe2_404e2b088af245b464873--
+
+  [1m[35m (12.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.7ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.9ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:56.764361"], ["updated_at", "2019-02-12 14:48:56.764361"], ["user_id", 2], ["event_id", 5]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.2ms
+Sent mail to cliffordsmith@reicheleffertz.org (228.8ms)
+Date: Tue, 12 Feb 2019 15:48:56 +0100
+From: no-reply@monsite.fr
+To: cliffordsmith@reicheleffertz.org
+Message-ID: <5c62dcd8c4b59_404e2b088af245b4651d6@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd8c2d47_404e2b088af245b465089";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd8c2d47_404e2b088af245b465089
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRWxlY3RhYnV6eiBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRp
+c2UgQ291cnQgIQ0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KIA0KZW1haWwgbm91dmVsIGlu
+c2NyaXQgOiBteXJ0aWVAc2NoaWxsZXIuYml6Lg0KIA0KUG91ciBhY2PDqWRl
+ciDDoCB0b24gZXNwYWNlIGNsaWVudCwgY29ubmVjdGUtdG9pIHZpYSA6IGh0
+dHA6Ly9tb25zaXRlLmZyL2xvZ2luLg0KIA0Kw4AgdHLDqHMgdml0ZSBzdXIg
+bW9uc2l0ZS5mciAhDQo=
+
+----==_mimepart_5c62dcd8c2d47_404e2b088af245b465089
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Electabuzz nouvel inscrit pour : Paradise Court !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : myrtie@schiller.biz.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd8c2d47_404e2b088af245b465089--
+
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.9ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:57.064403"], ["updated_at", "2019-02-12 14:48:57.064403"], ["user_id", 10], ["event_id", 9]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.1ms
+Sent mail to nestorwaelchi@harber.net (234.9ms)
+Date: Tue, 12 Feb 2019 15:48:57 +0100
+From: no-reply@monsite.fr
+To: nestorwaelchi@harber.net
+Message-ID: <5c62dcd9182b8_404e2b088af245b46533c@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd916520_404e2b088af245b4652ab";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd916520_404e2b088af245b4652ab
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgVmVub25hdCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2Ug
+RXN0YXRlcyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IGFscGhvbnNvQGh5YXR0Lm5hbWUuDQogDQpQb3VyIGFjY8OpZGVy
+IMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0
+cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBt
+b25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd916520_404e2b088af245b4652ab
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Venonat nouvel inscrit pour : Paradise Estates !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : alphonso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd916520_404e2b088af245b4652ab--
+
+  [1m[35m (11.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.2ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.5ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:57.362308"], ["updated_at", "2019-02-12 14:48:57.362308"], ["user_id", 10], ["event_id", 8]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.2ms
+Sent mail to myrtie@schiller.biz (224.8ms)
+Date: Tue, 12 Feb 2019 15:48:57 +0100
+From: no-reply@monsite.fr
+To: myrtie@schiller.biz
+Message-ID: <5c62dcd960c5d_404e2b088af245b4655d3@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd95ee9d_404e2b088af245b46548b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd95ee9d_404e2b088af245b46548b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgV2VlemluZyBub3V2ZWwgaW5zY3JpdCBwb3VyIDogQXV0dW1uIENy
+b3NzaW5nICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNj
+cml0IDogYWxwaG9uc29AaHlhdHQubmFtZS4NCiANClBvdXIgYWNjw6lkZXIg
+w6AgdG9uIGVzcGFjZSBjbGllbnQsIGNvbm5lY3RlLXRvaSB2aWEgOiBodHRw
+Oi8vbW9uc2l0ZS5mci9sb2dpbi4NCiANCsOAIHRyw6hzIHZpdGUgc3VyIG1v
+bnNpdGUuZnIgIQ0K
+
+----==_mimepart_5c62dcd95ee9d_404e2b088af245b46548b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Weezing nouvel inscrit pour : Autumn Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : alphonso@hyatt.name.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd95ee9d_404e2b088af245b46548b--
+
+  [1m[35m (13.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.4ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.8ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:57.651662"], ["updated_at", "2019-02-12 14:48:57.651662"], ["user_id", 8], ["event_id", 7]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 26.8ms
+Sent mail to ewa@mraz.io (250.8ms)
+Date: Tue, 12 Feb 2019 15:48:57 +0100
+From: no-reply@monsite.fr
+To: ewa@mraz.io
+Message-ID: <5c62dcd9a7635_404e2b088af245b4657ec@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcd9a5a19_404e2b088af245b465664";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcd9a5a19_404e2b088af245b465664
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgUHN5ZHVjayBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyayBIZWln
+aHRzICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNjcml0
+IDogY2xpZmZvcmRzbWl0aEByZWljaGVsZWZmZXJ0ei5vcmcuDQogDQpQb3Vy
+IGFjY8OpZGVyIMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kg
+dmlhIDogaHR0cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2
+aXRlIHN1ciBtb25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcd9a5a19_404e2b088af245b465664
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Psyduck nouvel inscrit pour : Park Heights !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : cliffordsmith@reicheleffertz.org.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcd9a5a19_404e2b088af245b465664--
+
+  [1m[35m (30.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (2.1ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:57.981324"], ["updated_at", "2019-02-12 14:48:57.981324"], ["user_id", 9], ["event_id", 3]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 29.1ms
+Sent mail to birgit@homenickblanda.com (228.8ms)
+Date: Tue, 12 Feb 2019 15:48:58 +0100
+From: no-reply@monsite.fr
+To: birgit@homenickblanda.com
+Message-ID: <5c62dcda468f_404e2b088af245b4659fa@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcda2a40_404e2b088af245b465895";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcda2a40_404e2b088af245b465895
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU2VlbCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2UgQ3Jv
+c3NpbmcgIQ0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PQ0KIA0KZW1haWwgbm91dmVsIGluc2Ny
+aXQgOiBhbGJhdWNoQHdpbGRlcm1hbmRhbW9yZS5pbmZvLg0KIA0KUG91ciBh
+Y2PDqWRlciDDoCB0b24gZXNwYWNlIGNsaWVudCwgY29ubmVjdGUtdG9pIHZp
+YSA6IGh0dHA6Ly9tb25zaXRlLmZyL2xvZ2luLg0KIA0Kw4AgdHLDqHMgdml0
+ZSBzdXIgbW9uc2l0ZS5mciAhDQo=
+
+----==_mimepart_5c62dcda2a40_404e2b088af245b465895
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Seel nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : albauch@wildermandamore.info.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcda2a40_404e2b088af245b465895--
+
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.9ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (2.2ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:58.277870"], ["updated_at", "2019-02-12 14:48:58.277870"], ["user_id", 2], ["event_id", 9]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 28.4ms
+Sent mail to nestorwaelchi@harber.net (230.1ms)
+Date: Tue, 12 Feb 2019 15:48:58 +0100
+From: no-reply@monsite.fr
+To: nestorwaelchi@harber.net
+Message-ID: <5c62dcda4cadc_404e2b088af245b466115@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcda4ae1c_404e2b088af245b466077";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcda4ae1c_404e2b088af245b466077
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgVmVub25hdCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2Ug
+RXN0YXRlcyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5z
+Y3JpdCA6IG15cnRpZUBzY2hpbGxlci5iaXouDQogDQpQb3VyIGFjY8OpZGVy
+IMOgIHRvbiBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0
+cDovL21vbnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBt
+b25zaXRlLmZyICENCg==
+
+----==_mimepart_5c62dcda4ae1c_404e2b088af245b466077
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Venonat nouvel inscrit pour : Paradise Estates !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : myrtie@schiller.biz.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcda4ae1c_404e2b088af245b466077--
+
+  [1m[35m (13.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.1ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.7ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:58.575848"], ["updated_at", "2019-02-12 14:48:58.575848"], ["user_id", 6], ["event_id", 10]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 25.9ms
+Sent mail to birgit@homenickblanda.com (260.7ms)
+Date: Tue, 12 Feb 2019 15:48:58 +0100
+From: no-reply@monsite.fr
+To: birgit@homenickblanda.com
+Message-ID: <5c62dcda94ba0_404e2b088af245b46637@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcda93011_404e2b088af245b46622a";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcda93011_404e2b088af245b46622a
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU2VlbCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUm95YWwgSGVpZ2h0
+cyAhDQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09DQogDQplbWFpbCBub3V2ZWwgaW5zY3JpdCA6
+IG1hdXJlZW5AY29ucm95LmNvLg0KIA0KUG91ciBhY2PDqWRlciDDoCB0b24g
+ZXNwYWNlIGNsaWVudCwgY29ubmVjdGUtdG9pIHZpYSA6IGh0dHA6Ly9tb25z
+aXRlLmZyL2xvZ2luLg0KIA0Kw4AgdHLDqHMgdml0ZSBzdXIgbW9uc2l0ZS5m
+ciAhDQo=
+
+----==_mimepart_5c62dcda93011_404e2b088af245b46622a
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Seel nouvel inscrit pour : Royal Heights !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : maureen@conroy.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcda93011_404e2b088af245b46622a--
+
+  [1m[35m (9.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.6ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.9ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:58.897765"], ["updated_at", "2019-02-12 14:48:58.897765"], ["user_id", 6], ["event_id", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 27.3ms
+Sent mail to alphonso@hyatt.name (489.6ms)
+Date: Tue, 12 Feb 2019 15:48:58 +0100
+From: no-reply@monsite.fr
+To: alphonso@hyatt.name
+Message-ID: <5c62dcdae3b11_404e2b088af245b46656@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcdae1e4b_404e2b088af245b4664b1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcdae1e4b_404e2b088af245b4664b1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgRG9kcmlvIG5vdXZlbCBpbnNjcml0IHBvdXIgOiBQaW5lIEFjcmVz
+ICENCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCiANCmVtYWlsIG5vdXZlbCBpbnNjcml0IDog
+bWF1cmVlbkBjb25yb3kuY28uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRvbiBl
+c3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21vbnNp
+dGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRlLmZy
+ICENCg==
+
+----==_mimepart_5c62dcdae1e4b_404e2b088af245b4664b1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Dodrio nouvel inscrit pour : Pine Acres !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : maureen@conroy.co.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcdae1e4b_404e2b088af245b4664b1--
+
+  [1m[35m (45.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ db/seeds.rb:23
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mEvent Load (1.3ms)[0m  [1m[34mSELECT  "events".* FROM "events" WHERE "events"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ db/seeds.rb:24
+  [1m[36mAttendance Create (1.5ms)[0m  [1m[32mINSERT INTO "attendances" ("created_at", "updated_at", "user_id", "event_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["created_at", "2019-02-12 14:48:59.486982"], ["updated_at", "2019-02-12 14:48:59.486982"], ["user_id", 7], ["event_id", 3]]
+  ↳ db/seeds.rb:24
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/mailers/user_mailer.rb:21
+  Rendering user_mailer/inscription_event_email.html.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.html.erb within layouts/mailer (0.3ms)
+  Rendering user_mailer/inscription_event_email.text.erb within layouts/mailer
+  Rendered user_mailer/inscription_event_email.text.erb within layouts/mailer (0.2ms)
+UserMailer#inscription_event_email: processed outbound mail in 26.9ms
+Sent mail to birgit@homenickblanda.com (298.2ms)
+Date: Tue, 12 Feb 2019 15:48:59 +0100
+From: no-reply@monsite.fr
+To: birgit@homenickblanda.com
+Message-ID: <5c62dcdb7f236_404e2b088af245b4667e5@Trone.mail>
+Subject: inscription pour event !
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5c62dcdb7d5c5_404e2b088af245b4666a1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5c62dcdb7d5c5_404e2b088af245b4666a1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+U2FsdXQgU2VlbCBub3V2ZWwgaW5zY3JpdCBwb3VyIDogUGFyYWRpc2UgQ3Jv
+c3NpbmcgIQ0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PQ0KIA0KZW1haWwgbm91dmVsIGluc2Ny
+aXQgOiBzb29rQHNpbW9uaXMuaW8uDQogDQpQb3VyIGFjY8OpZGVyIMOgIHRv
+biBlc3BhY2UgY2xpZW50LCBjb25uZWN0ZS10b2kgdmlhIDogaHR0cDovL21v
+bnNpdGUuZnIvbG9naW4uDQogDQrDgCB0csOocyB2aXRlIHN1ciBtb25zaXRl
+LmZyICENCg==
+
+----==_mimepart_5c62dcdb7d5c5_404e2b088af245b4666a1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    <html>=0D
+  <head>=0D
+    <meta content=3D'text/html; charset=3DUTF-8' http-equiv=3D'Content-Ty=
+pe' />=0D
+  </head>=0D
+  <body>=0D
+    <h1>Salut Seel nouvel inscrit pour : Paradise Crossing !</h1>=0D
+    <p>=0D
+      email nouvel inscrit : sook@simonis.io.=0D
+    </p>=0D
+    <p>=0D
+      Pour acc=C3=A9der =C3=A0 ton espace client, connecte-toi via : http=
+://monsite.fr/login.=0D
+    </p>=0D
+    <p> =C3=80 tr=C3=A8s vite sur monsite.fr !=0D
+  </body>=0D
+</html>=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_5c62dcdb7d5c5_404e2b088af245b4666a1--
+
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ db/seeds.rb:24
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5298648161986612020)[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(5298648161986612020)[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/lordgoblin/.rvm/gems/ruby-2.5.1/bin/rake:23
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE DATABASE "goblin_world_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE DATABASE "goblin_world_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
