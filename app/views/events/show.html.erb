@@ -16,7 +16,7 @@
 		<p class="text-warning">location : <%= @event.location %></p>
 		<% if current_user == @event.user %>
 			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/<%= @event.id %>">nombre de participation : <%= @event.attendances.count %></a>
-		<% elsif current_user != @event.user %>
+		<% elsif current_user != @event.user && @b != true%>
 			<p class="text-warning">nombre de participation : <%= @event.attendances.count %></p>
 			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/new">participe??</a>
 		<% else %>

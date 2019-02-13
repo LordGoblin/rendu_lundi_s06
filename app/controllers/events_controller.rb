@@ -14,14 +14,9 @@ class EventsController < ApplicationController
     def update
     @event = Event.find(params[:id])
     parasol = params["event"]
-    puts "**************************"
-    puts params
-    puts parasol
     if @event.update(title: parasol["title"], description: parasol["description"], start_date: params["start_date"].to_datetime, duration: parasol["duration"], price: parasol["price"], location: parasol["location"])
-      puts "1111111111111111111111111111111111111111"
       redirect_to "/events/#{params["id"]}"
     else
-      puts "2222222222222222222222222222222222222222222"
       render :edit
     end
   end
@@ -37,7 +32,13 @@ class EventsController < ApplicationController
   end
 
   def show
+    @b = false
     @event = Event.find(params["id"])
+    Attendance.all.each do |a|
+      if a.user_id == current_user.id
+        @b = true
+      end
+    end    
   end
 
 end

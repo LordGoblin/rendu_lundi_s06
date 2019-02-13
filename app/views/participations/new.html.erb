@@ -1,11 +1,18 @@
-<h1>coucoucoucou</h1>
+<%= form_tag event_participations_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: $5.00</span>
+    </label>
+  </article>
 
-	<div>
-		<%= form_tag url_for(action: 'create'), method: "post" do %>
-			<div class="border border-dark bg-success pt-3 pb-3 text-warning">
-
-
-			    <%= submit_tag "Create gossip" %>
-		    </div>
-		<% end %>
-	</div>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="A month's subscription"
+          data-amount="500"
+          data-locale="auto"></script>
+<% end %>
