@@ -1,15 +1,15 @@
 <div class="d-flex flex-column">
       <div>
         <h1 class="pt-3 pb-3 text-success">accueil de event</h3>
+          
       </div>
-
 	<% @event.each do |event| %>
     	<div class="card mb-4 bg-success text-center">
         	<div class="card-header border border-dark bg-info">
-        		<a class="text-warning" href=""><%= event.title %><br/></a>
+        		<a class="text-warning" href="/events/<%= event.id %>"><%= event.title %><br/></a>
         	</div>
         	<div class="card-body">
-        		<a class="text-warning" href="">author:<%= event.user.email %></a>
+        		<a class="text-warning" href="/events/<%= event.id %>">author:<%= event.user.first_name %></a>
                 <br/>
                 <br/>
         	</div>

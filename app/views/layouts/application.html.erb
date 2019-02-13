@@ -4,6 +4,7 @@
     <title>GoblinWorld</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <% @user = current_user %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -16,11 +17,19 @@
 
   <body class="bg-warning text-center">
     <nav class="pt-4 pb-2 d-flex justify-content-between bg-success">
-      <a class="pr-5 text-warning" href="/event">accueil</a>
+      <a class="pr-5 text-warning" href="/events">accueil</a>
 
       <div>
-        <a class="pr-3 text-warning" href="/event/new">new event</a>
-        <a class="pr-5 text-warning" href="">contact</a>
+        <% if current_user %>
+        <a class="pr-3 text-warning" href="/users/<%= @user.id %>">profile</a>
+        <a class="pr-5 text-danger h4" href="/users/sign_out" data-method="delete">deconect</a>
+        <% else %>
+        <a class="text-info h4" href="/users/sign_in">login</a>
+        <a class="pr-3 text-warning" href="/users/sign_up">inscrire</a>
+        <% end %>
+        <a class="pr-3 text-warning" href="/events/new">create event</a>
+
+
       </div>
     </nav>
     <div>

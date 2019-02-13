@@ -8,6 +8,7 @@ gem "table_print"
 gem 'faker'
 gem 'dotenv-rails'
 gem 'factory_bot_rails'
+gem 'stripe'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
