@@ -8,7 +8,9 @@ class ParticipationsController < ApplicationController
 
   def create
         # Amount in cents
-    @amount = 500
+    @event = Event.find(params["event_id"])
+
+    @amount = @event.price * 100
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
@@ -21,7 +23,9 @@ class ParticipationsController < ApplicationController
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
-    @attendance = Attendance.new(user_id: current_user.id, event_id: params["event_id"])
+    puts "****************************"
+    puts params
+    @attendance = Attendance.new(user_id: current_user.id, event_id: params["event_id"], stripe_customer_id: params["stripeToken"])
     if @attendance.save
       redirect_to "/events"
     else

@@ -34,11 +34,25 @@ class EventsController < ApplicationController
   def show
     @b = false
     @event = Event.find(params["id"])
+    if current_user
     Attendance.all.each do |a|
       if a.user_id == current_user.id
-        @b = true
+        if a.event_id == @event.id
+          @b = true
+        end
       end
+    end
     end    
   end
+
+  def destroy
+    @desevent = Event.find(params["id"])
+    if @desevent.attendances.count == 0
+      @desevent.destroy
+      redirect_to "/events"
+    end
+    redirect_to "/events"
+  end
+
 
 end

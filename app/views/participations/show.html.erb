@@ -1,12 +1,14 @@
 <h1><%= @event.title %></h1>
 <p class="">inscrit : <%= @event.attendances.count %></p>
 <a class="text-info h4" href="/events/<%= @event.id %>/edit">edit</a>
+<a class="font-weight-light text-danger" href="<%=event_path(@event.id)%> "data-confirm= 'Are you sure ?' data-method="DELETE">Delete event</a>
+
 
 <div>
 	<% @event.attendances.each do |event| %>
     	<div class="card mb-4 bg-success text-center">
         	<div class="card-header border border-dark bg-info">
-        		<p class="text-warning">participe :<%= event.user.first_name %></p>
+        		<p class="text-warning">participe :<%= event.user.email %></p>
         	</div>
         	<div class="card-body">
         		<p class="text-warning">description :<%= event.user.description %></p>

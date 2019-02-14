@@ -9,14 +9,14 @@
 		<p class="text-warning"><%= @event.title %></p>
 		<p class="text-warning">crée le : <%= @event.description %></p>
 		<br/>
-		<a class="text-info pr-5" href="/users/<%= @event.user.id %>">author : <%= @event.user.first_name %></a>
+		<a class="text-info pr-5" href="/users/<%= @event.user.id %>">author : <%= @event.user.email %></a>
 		<p class="text-warning">start date : <%= @event.start_date %></p>
 		<p class="text-warning">duration : <%= @event.duration %></p>
 		<p class="text-warning">price : <%= @event.price %></p>
 		<p class="text-warning">location : <%= @event.location %></p>
 		<% if current_user == @event.user %>
 			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/<%= @event.id %>">nombre de participation : <%= @event.attendances.count %></a>
-		<% elsif current_user != @event.user && @b != true%>
+		<% elsif current_user != @event.user && @b != true && current_user%>
 			<p class="text-warning">nombre de participation : <%= @event.attendances.count %></p>
 			<a class="text-info pr-5" href="/events/<%= @event.id %>/participations/new">participe??</a>
 		<% else %>
