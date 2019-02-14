@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :user_id, only: [:show]
   before_action :authenticate_user!, only: [:show]
 
   def show
