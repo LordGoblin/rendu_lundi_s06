@@ -1,6 +1,5 @@
 class ParticipationsController < ApplicationController
     before_action :authenticate_user!, only: [:create]
-  before_action :same_id, only: [:index]
   def new
     #if Attendance.where(user: current_user.id.to_s)
     #  redirect_to "/events"
